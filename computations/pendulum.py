@@ -103,6 +103,10 @@ def get_the_gif(t, u, M):
     animation.save('celluloid.gif')
 
 
+def solve_celluloid_problem(initial_val, M):
+    t, u = solve_ode(f, fu, M, t0, T, initial_val, alpha=(1 + 1j)/2)
+    get_the_gif(t, u, M)
+
 
 if __name__ == '__main__':
     x10, y10 = 3., -4.
@@ -114,5 +118,4 @@ if __name__ == '__main__':
 
     initial_val = [x10, y10, x20, y20, vx10, vy10, vx20, vy20, lambda10, lambda20]
     t, u = solve_ode(f, fu, M, t0, T, initial_val, alpha=(1 + 1j)/2)
-
     get_the_gif(t, u, M)
