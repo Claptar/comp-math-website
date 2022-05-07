@@ -1,5 +1,11 @@
 import numpy as np
 
+# Параметры системы
+t0, T = 0., 14.16
+g = 9.81
+l1, l2 = 5., 2.
+m1, m2 = 1.0, 0.1
+
 
 def f(u, g, m1, m2, l1, l2):
     f = np.zeros(10)
@@ -50,4 +56,15 @@ def get_D_matrix():
     D[8, 8] = 0
     D[9, 9] = 0
     return D
+
+
+def solve_ode(f, fu, M, t0, T, initial_val, alpha=(1 + 1j)/2):
+    tau = (T - t0) / M
+    t = np.linspace(t0, T, M + 1)
+    u = np.zeros((M + 1, 10))
+    u[0, :] = initial_val
+    for m in range(M):
+        w1 = np.linalg.solve(get_D_matrix() - alpha * tau * fu(u[m], m1, m2), f(u[m], g, m1, m2, l1, l2))
+        u[m + 1] = u[m] + tau * w1.real
+
 
