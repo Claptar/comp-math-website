@@ -97,9 +97,11 @@ def get_the_gif(t, u, M):
         ax.plot(u[:m, 0], u[:m, 1], '-g', linewidth=1)
         # Отрисовка следа груза 2
         ax.plot(u[:m, 2], u[:m, 3], '-y', linewidth=1)
-        if m % 4 == 0:
+        if m % 2 == 0:
             camera.snap()
-    animation = camera.animate(interval=15, blit=True)
+
+    tau = t[1] - t[0]
+    animation = camera.animate(interval=tau * 1e3, blit=True)
     animation.save('celluloid.gif')
 
 
