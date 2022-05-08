@@ -1,8 +1,12 @@
 from flask import Flask, render_template
+import os
+from data_handling import db
 
 import sys
 
 app = Flask(__name__)
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DB_URL')
+db.init_app(app)
 
 
 @app.route('/', methods=['POST', 'GET'])
