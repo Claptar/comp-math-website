@@ -1,0 +1,114 @@
+body {
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+img {
+    /*high: 50%;*/
+    width: 50%;
+    position: absolute;
+    right: 50%;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-right: 5x;
+    margin-left: 5px;
+}
+
+.main-block {
+    /*box-shadow: 0 0 5px;*/
+    position: relative;
+    display: inline-block;
+    height: 800px;
+    width: 1600px;
+    /*border: 1px solid;*/
+    box-shadow: 0 .125rem .25rem rgba(0,0,0,.075)!important;
+    border-radius: .25rem!important;
+}
+
+.form-block {
+    position: absolute;
+    left: 50%;
+    top: 100px;
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: #007bff;
+    border-color: #007bff;
+}
+
+.mb-2{
+    margin-bottom: .5rem!important;
+}
+
+.btn {
+    display: inline-block;
+    font-weight: 400;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    border: 1px solid transparent;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: .25rem;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+.form-control {
+    display: block;
+    width: 50%;
+    padding: .375rem .75rem;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-right: 60px;
+    margin-left: 32px;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+.row {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    margin-right: -30px;
+    margin-left: -30px;
+}
+
+.col {
+    -ms-flex-preferred-size: 0;
+    padding: 0px 15px;
+    flex-basis: 0;
+    -webkit-box-flex: 1;
+    -ms-flex-positive: 1;
+    flex-grow: 1;
+    max-width: 100%;
+}
+
+.p-3 {
+    padding: 1rem!important;
+}
+
+.mb-5 {
+    margin-bottom: 3rem!important;
+}
+
+.shadow-sm {
+    box-shadow: 0 .125rem .25rem rgba(0,0,0,.075)!important;
+}
+
+.rounded {
+    border-radius: .25rem!important;
+}

@@ -2,9 +2,33 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <title>Title</title>
 </head>
 <body>
-<img src="/static/img/cat.webp" width="300">
+<div class="main-block">
+    <img src="/static/img/cat.webp">
+    <div class="form-block">
+      <form action="/calculate" method="POST">
+        <div class="row">
+            <div class="col">
+                <h1>Velocity</h1>
+                <input type="text" placeholder="V1" name="v_1" class="form-control">
+                <input type="text" placeholder="V2" name="v_2" class="form-control">
+                <input type="text" placeholder="V3" name="v_3" class="form-control">
+                <input type="text" placeholder="V4" name="v_4" class="form-control">
+            </div>
+            <div class="col">
+                <h1>Coordinates</h1>
+                <input type="text" placeholder="X1" name="x_1" class="form-control">
+                <input type="text" placeholder="X2" name="x_2" class="form-control">
+                <input type="text" placeholder="X3" name="x_3" class="form-control">
+                <input type="text" placeholder="X4" name="x_4" class="form-control">
+            </div>
+        </div>
+        <button type="submit" class="btn-primary mb-2 btn">Submit</button>
+      </form>
+    </div>
+</div>
 </body>
 </html>

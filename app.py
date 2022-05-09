@@ -1,7 +1,7 @@
-from flask import Flask, render_template
-import os
+from flask import Flask, redirect, render_template, request
 from data_handling import db
 
+import os
 import sys
 
 app = Flask(__name__)
@@ -12,6 +12,15 @@ db.init_app(app)
 @app.route('/', methods=['POST', 'GET'])
 def main_page():
     return render_template('main_page.html')
+
+
+@app.route('/calculate', methods=['POST'])
+def calculate():
+    if request.method == "POST":
+        v_1, v_2, v_3, v_4 = request.form['v_1'], request.form['v_2'], request.form['v_3'], request.form['v_4']
+        x_1, x_2, x_3, x_4 = request.form['x_1'], request.form['x_2'], request.form['x_3'], request.form['x_4']
+
+        return redirect('/')
 
 
 if __name__ == '__main__':
