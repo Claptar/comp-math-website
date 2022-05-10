@@ -4,10 +4,17 @@ from celluloid import Camera
 
 
 # Параметры системы
+# l1, l2 = 5., 2.
+# m1, m2 = 1.0, 0.1
 t0, T = 0., 14.16
 g = 9.81
-l1, l2 = 5., 2.
-m1, m2 = 1.0, 0.1
+x10, y10 = 3., -4.
+x20, y20 = 3., -6.
+vx10, vy10 = 0., 0.
+vx20, vy20 = 0., 0.
+lambda10, lambda20 = 100., 100.
+M = 2000
+coordinates, velocities, lambdas = [x10, y10, x20, y20], [vx10, vy10, vx20, vy20], [lambda10, lambda20]
 
 
 def f(u, g, m1, m2, l1, l2):
@@ -62,11 +69,13 @@ def get_D_matrix():
     return D
 
 
-def solve_ode(f, fu, M, t0, T, initial_val, alpha=(1 + 1j)/2):
+def solve_ode(f, fu, M, t0, T, masses, lengths, alpha=(1 + 1j)/2):
     tau = (T - t0) / M
     t = np.linspace(t0, T, M + 1)
     u = np.zeros((M + 1, 10))
-    u[0, :] = initial_val
+    u[0, :] = coordinates + velocities + lambdas
+    m1, m2 = masses
+    l1, l2 = lengths
     for m in range(M):
         w1 = np.linalg.solve(get_D_matrix() - alpha * tau * fu(u[m], m1, m2), f(u[m], g, m1, m2, l1, l2))
         u[m + 1] = u[m] + tau * w1.real
@@ -103,19 +112,21 @@ def get_the_gif(t, u, M):
     animation.save('celluloid.gif')
 
 
-def solve_celluloid_problem(initial_val, M):
-    t, u = solve_ode(f, fu, M, t0, T, initial_val, alpha=(1 + 1j)/2)
+def solve_celluloid_problem(masses, lengths):
+    t, u = solve_ode(f, fu, M, t0, T, masses, lengths, alpha=(1 + 1j)/2)
     get_the_gif(t, u, M)
 
 
 if __name__ == '__main__':
-    x10, y10 = 3., -4.
-    x20, y20 = 3., -6.
-    vx10, vy10 = 0., 0.
-    vx20, vy20 = 0., 0.
-    lambda10, lambda20 = 100., 100.
-    M = 2000
+    # x10, y10 = 3., -4.
+    # x20, y20 = 3., -6.
+    # vx10, vy10 = 0., 0.
+    # vx20, vy20 = 0., 0.
+    # lambda10, lambda20 = 100., 100.
+    # M = 2000
+    l1, l2 = 5., 2.
+    m1, m2 = 1.0, 0.1
 
-    initial_val = [x10, y10, x20, y20, vx10, vy10, vx20, vy20, lambda10, lambda20]
-    t, u = solve_ode(f, fu, M, t0, T, initial_val, alpha=(1 + 1j)/2)
+    masses, lengths = [m1, m2], [l1, l2]
+    t, u = solve_ode(f, fu, M, t0, T, masses, lengths, alpha=(1 + 1j)/2)
     get_the_gif(t, u, M)
