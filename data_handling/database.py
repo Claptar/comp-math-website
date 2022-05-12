@@ -1,4 +1,10 @@
+# from flask import Flask, abort
 from flask_sqlalchemy import SQLAlchemy
+import os
+
+# app = Flask(__name__)
+# app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DB_URL')
+# db = SQLAlchemy(app)
 
 db = SQLAlchemy()
 
@@ -30,22 +36,14 @@ class Launches(db.Model):
 
 
 if __name__ == '__main__':
-    x10, y10 = 3., -4.3
-    x20, y20 = 3., -6.
-    vx10, vy10 = 0., 0.
-    vx20, vy20 = 0., 0.
-    lambda10, lambda20 = 100., 100.
-    M = 2000
+    l1, l2 = 5., 2.
+    m1, m2 = 1.0, 0.1
+
     drive_id = '1ZoSydMxknjPMkVf-Gz8Qge5Cc_5M4Ztf'
 
-    launch1 = Launches(x10, y10, x20, y20, vx10, vy10, vx20, vy20, lambda10, lambda20, M, drive_id, 'pendulum')
+    launch1 = Launches(m1, m2, l1, l2, drive_id)
     launch1.save_to_db()
-    initials = dict(x1=x10, y1=y10,
-                    x2=x20, y2=y20,
-                    vx1=vx10, vy1=vy10,
-                    vx2=vx20, vy2=vy20,
-                    lambda1=lambda10, lambda2=lambda20,
-                    interval_num=M)
+    initials = dict(m1=m1, m2=m2, l1=l1, l2=l2)
 
     print(Launches.check_launch(initials))
     print(initials)
