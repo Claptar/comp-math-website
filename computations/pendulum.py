@@ -9,7 +9,7 @@ t0, T = 0., 14.16
 g = 9.81
 XLIM = (-5.5, 5.5)
 YLIM = (-8, 1)
-M = 500
+M = 400
 
 
 def f(u, g, m1, m2, l1, l2):
@@ -131,7 +131,6 @@ def solve_celluloid_problem(masses, lengths, angles):
 
 
 if __name__ == '__main__':
-    M = 500
     angles = [45, 0]
     l1, l2 = 5., 2.
     m1, m2 = 1.0, 0.1
