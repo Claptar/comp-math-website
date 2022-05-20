@@ -5,19 +5,11 @@ import matplotlib.pyplot as plt
 
 
 # Параметры системы
-# l1, l2 = 5., 2.
-# m1, m2 = 1.0, 0.1
 t0, T = 0., 14.16
 g = 9.81
 XLIM = (-5.5, 5.5)
 YLIM = (-8, 1)
-x10, y10 = 3., -4.
-x20, y20 = 3., -6.
-vx10, vy10 = 0., 0.
-vx20, vy20 = 0., 0.
-lambda10, lambda20 = 100., 100.
 M = 2000
-coordinates, velocities, lambdas = [x10, y10, x20, y20], [vx10, vy10, vx20, vy20], [lambda10, lambda20]
 
 
 def f(u, g, m1, m2, l1, l2):
@@ -103,7 +95,7 @@ def initialize_values(l1, l2, phi1, phi2, v1x=0., v1y=0., v2x=0., v2y=0., lambda
 
 def get_the_gif(t, u, M):
     style.use('dark_background')
-    fig = figure()
+    fig = plt.figure()
     camera = Camera(fig)
     ax = axes(xlim=XLIM, ylim=YLIM)
     ax.set_aspect('equal')
@@ -139,12 +131,7 @@ def solve_celluloid_problem(masses, lengths):
 
 
 if __name__ == '__main__':
-    # x10, y10 = 3., -4.
-    # x20, y20 = 3., -6.
-    # vx10, vy10 = 0., 0.
-    # vx20, vy20 = 0., 0.
-    # lambda10, lambda20 = 100., 100.
-    # M = 2000
+    M = 50
     angles = [45, 0]
     l1, l2 = 5., 2.
     m1, m2 = 1.0, 0.1
