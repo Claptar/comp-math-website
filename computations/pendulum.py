@@ -9,7 +9,7 @@ t0, T = 0., 14.16
 g = 9.81
 XLIM = (-5.5, 5.5)
 YLIM = (-8, 1)
-M = 400
+M = 1000
 
 
 def f(u, g, m1, m2, l1, l2):
@@ -102,7 +102,7 @@ def get_the_gif(t, u, M):
     ax.set_xlabel('x')
     ax.set_ylabel('y')
 
-    for m in range(M + 1):
+    for m in range(0, M + 1, 5):
         ax.plot(0, 0, color="yellow", marker='o', markersize=5)
         ax.plot((-2, 2), (0, 0), '-', color="white")
         # Отрисовка подвеса 1
@@ -117,10 +117,9 @@ def get_the_gif(t, u, M):
         ax.plot(u[:m, 0], u[:m, 1], '-g', linewidth=1)
         # Отрисовка следа груза 2
         ax.plot(u[:m, 2], u[:m, 3], '-y', linewidth=1)
-        if m % 2 == 0:
-            camera.snap()
+        camera.snap()
 
-    tau = t[1] - t[0]
+    tau = (t[1] - t[0]) * 5
     animation = camera.animate(interval=tau * 1e3, blit=True)
     animation.save('celluloid.gif')
 
