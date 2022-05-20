@@ -131,7 +131,7 @@ def solve_celluloid_problem(masses, lengths, angles):
 
 
 if __name__ == '__main__':
-    M = 50
+    M = 500
     angles = [45, 0]
     l1, l2 = 5., 2.
     m1, m2 = 1.0, 0.1
