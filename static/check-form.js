@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', function() {
   document.getElementById('button').disabled = true;
 });
 
-let dictCorrect = {'mass1': false, 'mass2': false, 'thread1': false, 'thread2': false};
+let dictCorrect = {'mass1': false, 'mass2': false, 'thread1': false, 'thread2': false, 'angle1': false, 'angle2': false};
 
 function enforceMinMax(el) {
   if(el.value != ""){
@@ -19,7 +19,7 @@ function enforceMinMax(el) {
     dictCorrect[el.id] = false;
     document.getElementById('button').disabled = true;
   }
-  console.log(dictCorrect)
+  //console.log(dictCorrect)
   inputCorrect = true;
   for (let key of Object.keys(dictCorrect)) {
     inputCorrect = inputCorrect & dictCorrect[key];
