@@ -1,5 +1,8 @@
 document.addEventListener('DOMContentLoaded', function() {
   document.getElementById('button').disabled = true;
+  let picture = document.getElementById("picture");
+  let loader = document.getElementById("loader");
+  loader.style.display = "none";
 });
 
 let dictCorrect = {'mass1': false, 'mass2': false, 'thread1': false, 'thread2': false, 'angle1': false, 'angle2': false};
@@ -28,4 +31,9 @@ function enforceMinMax(el) {
   if (inputCorrect == true) {
     document.getElementById('button').disabled = false;
   }
+}
+
+function loading() {
+    picture.style.display = "none";
+    loader.style.display = "block";
 }
