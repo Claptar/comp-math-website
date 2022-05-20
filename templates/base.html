@@ -13,15 +13,19 @@
             <div class="col-xl-6 d-flex justify-content-center mt-3"> <!-- d-flex justify-content-center -->
 
                 <form action="/calculate" method="POST">
-                    <h2 class="text-white my-5">System parameters</h2>
-                    <label for="mass1" class="form-label text-white">Enter ball' masses</label>
-                    <input type="number" placeholder="mass" class="form-control my-3" id="mass1" name="m1" min="1" max="5" onkeyup=enforceMinMax(this)>
-                    <input type="number" placeholder="mass" class="form-control my-3 mb-5" id="mass2" name="m2" min="1" max="5" onkeyup=enforceMinMax(this)>
+                    <h2 class="text-white my-5">Параметры системы</h2>
+                    <label for="mass1" class="form-label text-white">Введите массы шариков</label>
+                    <input type="number" placeholder="Масса шарика от 0,1 до 1" class="form-control my-3" id="mass1" name="m1" min="0,1" max="1" onkeyup=enforceMinMax(this)>
+                    <input type="number" placeholder="Масса шарика от 0.1 до 1" class="form-control my-3 mb-5" id="mass2" name="m2" min="0,1" max="1" onkeyup=enforceMinMax(this)>
 
-                    <label for="thread1" class="form-label text-white">Enter threads lengths</label>
-                    <input type="number" placeholder="length" class="form-control my-3" id="thread1" name="l1" min="1" max="5" onkeyup=enforceMinMax(this)>
-                    <input type="number" placeholder="length" class="form-control my-3" id="thread2" name="l2" min="1" max="5" onkeyup=enforceMinMax(this)>
-                    <button type="submit" class="btn btn-dark btn-outline-light my-3 w-100" id="button">Submit</button>
+                    <label for="thread1" class="form-label text-white">Введите длины нитей</label>
+                    <input type="number" placeholder="Длина нити от 0,1 до 5" class="form-control my-3" id="thread1" name="l1" min="0,1" max="5" onkeyup=enforceMinMax(this)>
+                    <input type="number" placeholder="Длина нити от 0,1 до 5" class="form-control my-3 mb-5" id="thread2" name="l2" min="0,1" max="5" onkeyup=enforceMinMax(this)>
+
+                    <label for="angle1" class="form-label text-white">Введите величины углов</label>
+                    <input type="number" placeholder="Угол от -90 до 90" class="form-control my-3" id="angle1" name="a1" min="-90" max="90" onkeyup=enforceMinMax(this)>
+                    <input type="number" placeholder="Угол от -90 до 90" class="form-control my-3" id="angle2" name="a2" min="-90" max="90" onkeyup=enforceMinMax(this)>
+                    <button type="submit" class="btn btn-dark btn-outline-light my-3 w-100" id="button">Отправить</button>
                 </form>
             </div>
         </div>
