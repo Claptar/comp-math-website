@@ -1,6 +1,7 @@
 import numpy as np
 from matplotlib.pyplot import style, figure, axes
 from celluloid import Camera
+import matplotlib.pyplot as plt
 
 
 # Параметры системы
@@ -8,6 +9,8 @@ from celluloid import Camera
 # m1, m2 = 1.0, 0.1
 t0, T = 0., 14.16
 g = 9.81
+XLIM = (-5.5, 5.5)
+YLIM = (-8, 1)
 x10, y10 = 3., -4.
 x20, y20 = 3., -6.
 vx10, vy10 = 0., 0.
@@ -69,24 +72,40 @@ def get_D_matrix():
     return D
 
 
-def solve_ode(f, fu, M, t0, T, masses, lengths, alpha=(1 + 1j)/2):
+def solve_ode(f, fu, M, t0, T, masses, lengths, angles, alpha=(1 + 1j)/2):
     tau = (T - t0) / M
     t = np.linspace(t0, T, M + 1)
     u = np.zeros((M + 1, 10))
-    u[0, :] = coordinates + velocities + lambdas
     m1, m2 = masses
     l1, l2 = lengths
+    phi1, phi2 = angles
+    u[0, :] = initialize_values(l1=l1, l2=l2, phi1=phi1, phi2=phi2)
     for m in range(M):
         w1 = np.linalg.solve(get_D_matrix() - alpha * tau * fu(u[m], m1, m2), f(u[m], g, m1, m2, l1, l2))
         u[m + 1] = u[m] + tau * w1.real
     return t, u
 
 
+def initialize_values(l1, l2, phi1, phi2, v1x=0., v1y=0., v2x=0., v2y=0., lambda1=100., lambda2=100.):
+    """
+    Function that takes length of the pendulums and their angles and returns their coordinates
+    :param l1: length of the pendulum 1
+    :param l2: length of the pendulum 2
+    :param phi1: angle of the pendulum 1
+    :param phi2: angle of the pendulum 2
+    :return: list of coordinates
+    """
+    phi1, phi2 = phi1 / 180 * np.pi, phi2 / 180 * np.pi
+    x1, y1 = l1 * np.sin(phi1), YLIM[1] - l1 * np.cos(phi1)
+    x2, y2 = x1 + l2 * np.sin(phi2), y1 - l2 * np.cos(phi2)
+    return x1, y1, x2, y2, v1x, v1y, v2x, v2y, lambda1, lambda2
+
+
 def get_the_gif(t, u, M):
     style.use('dark_background')
     fig = figure()
     camera = Camera(fig)
-    ax = axes(xlim=(-5.5, 5.5), ylim=(-8, 1))
+    ax = axes(xlim=XLIM, ylim=YLIM)
     ax.set_aspect('equal')
     ax.set_xlabel('x')
     ax.set_ylabel('y')
@@ -126,9 +145,10 @@ if __name__ == '__main__':
     # vx20, vy20 = 0., 0.
     # lambda10, lambda20 = 100., 100.
     # M = 2000
+    angles = [45, 0]
     l1, l2 = 5., 2.
     m1, m2 = 1.0, 0.1
 
     masses, lengths = [m1, m2], [l1, l2]
-    t, u = solve_ode(f, fu, M, t0, T, masses, lengths, alpha=(1 + 1j)/2)
+    t, u = solve_ode(f, fu, M, t0, T, masses, lengths, angles, alpha=(1 + 1j)/2)
     get_the_gif(t, u, M)
