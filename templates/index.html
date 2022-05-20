@@ -1,48 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-</head>
-<body class="bg-dark">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-xl-6">
-                    <img src="https://i.gifer.com/origin/d6/d66620ccdb4aee4182879a2c07d393ef_w200.webp" alt="" class="img-fluid w-100"/>
-            </div>
-            <div class="col-xl-6 d-flex justify-content-center mt-3"> <!-- d-flex justify-content-center -->
-
-                <form action="">
-                    <h2 class="text-white my-5">System parameters</h2>
-                    <label for="mass" class="form-label text-white">Enter ball' masses</label>
-                    <input type="text" placeholder="mass" class="form-control my-3" id="mass">
-                    <input type="text" placeholder="mass" class="form-control my-3 mb-5">
-
-                    <label for="thread" class="form-label text-white">Enter threads lengths</label>
-                    <input type="text" placeholder="length" class="form-control my-3" id="thread">
-                    <input type="text" placeholder="length" class="form-control my-3">
-                    <button type="button" class="btn btn-dark btn-outline-light my-3 w-100">Submit</button>
-                </form>
-            </div>
-        </div>
-    </div>
-    <div class="row my-5">
-        <div class="col">
-            <div class="text-center">
-                <h1 class="text-white">Piece of theory</h1>
-                <p class="text-white m-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur doloribus ea enim fuga illo
-                    molestiae necessitatibus neque nisi omnis quidem, rem, sapiente, tempore voluptatem! Praesentium
-                    quidem suscipit unde? Non odit repellendus saepe sequi? A aliquam earum enim excepturi illum itaque
-                    natus nostrum quod ratione tenetur. Amet dolorem eius fugiat laudantium maxime minus non sapiente
-                    suscipit. Corporis culpa debitis harum perspiciatis sapiente tempora vitae. Accusamus aperiam
-                    blanditiis dolore error esse est facere harum maiores pariatur saepe. Adipisci autem debitis
-                    deserunt doloribus eaque eligendi et eveniet exercitationem harum impedit itaque iure, minima modi,
-                    nemo nostrum omnis qui quia repudiandae sequi voluptate. Porro.</p>
-            </div>
-        </div>
-    </div>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-</body>
-</html>
+{% extends "base.html" %}
+{% block content %}
+<div class="col-xl-6">
+    <img src="https://i.gifer.com/origin/d6/d66620ccdb4aee4182879a2c07d393ef_w200.webp" alt="" class="img-fluid w-100"/>
+</div>
+{% endblock %}
