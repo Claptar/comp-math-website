@@ -21,14 +21,11 @@ form_params = {
 }
 folder_id = "1aV0F7HXookLXrnoyl3cXGmRCRFqhYAmu"
 
-# app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DB_URL')
-# db = SQLAlchemy(app)
-
 
 @app.route('/', methods=['POST', 'GET'])
 def main_page():
     img_path = "/static/img/cat.webp"
-    return render_template('main_page.html', form_params=form_params, img_path=img_path)
+    return render_template('index.html', form_params=form_params, img_path=img_path)
 
 
 @app.route('/calculate', methods=['POST'])
@@ -37,6 +34,8 @@ def calculate():
         m1, m2 = float(request.form['m1']), float(request.form['m2'])
         l1, l2 = float(request.form['l1']), float(request.form['l2'])
         initials = {"m1": m1, "m2": m2, "l1": l1, "l2": l2}
+
+        print(initials)
 
         pendulum_data = Launches.check_launch(initials)
 

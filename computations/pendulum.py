@@ -111,7 +111,7 @@ def get_the_gif(t, u, M):
 
     tau = t[1] - t[0]
     animation = camera.animate(interval=tau * 1e3, blit=True)
-    animation.save('celluloid.gif')
+    animation.save('celluloid.webp')
 
 
 def solve_celluloid_problem(masses, lengths):
