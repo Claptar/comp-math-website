@@ -2,9 +2,9 @@ from flask import Flask, abort
 from flask_sqlalchemy import SQLAlchemy
 import os
 
-#app = Flask(__name__)
-#app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DB_URL')
-#db = SQLAlchemy(app)
+# app = Flask(__name__)
+# app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DB_URL')
+# db = SQLAlchemy(app)
 
 db = SQLAlchemy()
 

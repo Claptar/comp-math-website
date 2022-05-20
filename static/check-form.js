@@ -6,7 +6,7 @@ let dictCorrect = {'mass1': false, 'mass2': false, 'thread1': false, 'thread2': 
 
 function enforceMinMax(el) {
   if(el.value != ""){
-    if(parseInt(el.value) < parseInt(el.min) || parseInt(el.value) > parseInt(el.max)){
+    if(parseFloat(el.value) < parseFloat(el.min) || parseFloat(el.value) > parseFloat(el.max)){
 
       document.getElementById('button').disabled = true;
       dictCorrect[el.id] = false;

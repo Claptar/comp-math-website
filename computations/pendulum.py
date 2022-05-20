@@ -122,11 +122,11 @@ def get_the_gif(t, u, M):
 
     tau = t[1] - t[0]
     animation = camera.animate(interval=tau * 1e3, blit=True)
-    animation.save('celluloid.webp')
+    animation.save('celluloid.gif')
 
 
-def solve_celluloid_problem(masses, lengths):
-    t, u = solve_ode(f, fu, M, t0, T, masses, lengths, alpha=(1 + 1j)/2)
+def solve_celluloid_problem(masses, lengths, angles):
+    t, u = solve_ode(f, fu, M, t0, T, masses, lengths, angles, alpha=(1 + 1j)/2)
     get_the_gif(t, u, M)
 
 
