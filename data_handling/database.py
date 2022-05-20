@@ -1,29 +1,33 @@
-# from flask import Flask, abort
+from flask import Flask, abort
 from flask_sqlalchemy import SQLAlchemy
 import os
 
-# app = Flask(__name__)
-# app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DB_URL')
-# db = SQLAlchemy(app)
+#app = Flask(__name__)
+#app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DB_URL')
+#db = SQLAlchemy(app)
 
 db = SQLAlchemy()
 
 
-class Launches(db.Model):
-    __tablename__ = 'launches'
+class Init_values(db.Model):
+    __tablename__ = 'init_values'
 
     id = db.Column(db.Integer, primary_key=True)
     m1 = db.Column(db.Float)
     m2 = db.Column(db.Float)
     l1 = db.Column(db.Float)
     l2 = db.Column(db.Float)
+    alpha1 = db.Column(db.Float)
+    alpha2 = db.Column(db.Float)
     drive_id = db.Column(db.String(60))
 
-    def __init__(self, m1, m2, l1, l2, drive_id):
+    def __init__(self, m1, m2, l1, l2, alpha1, alpha2, drive_id):
         self.m1 = m1
         self.m2 = m2
         self.l1 = l1
         self.l2 = l2
+        self.alpha1 = alpha1
+        self.alpha2 = alpha2
         self.drive_id = drive_id
 
     @classmethod
@@ -38,12 +42,12 @@ class Launches(db.Model):
 if __name__ == '__main__':
     l1, l2 = 5., 2.
     m1, m2 = 1.0, 0.1
-
+    alpha1, alpha2 = 30, 50
     drive_id = '1ZoSydMxknjPMkVf-Gz8Qge5Cc_5M4Ztf'
 
-    launch1 = Launches(m1, m2, l1, l2, drive_id)
+    launch1 = Init_values(m1, m2, l1, l2, alpha1, alpha2, drive_id)
     launch1.save_to_db()
-    initials = dict(m1=m1, m2=m2, l1=l1, l2=l2)
+    initials = dict(m1=m1, m2=m2, l1=l1, l2=l2, alpha1=alpha1, alpha2=alpha2)
 
-    print(Launches.check_launch(initials))
+    print(Init_values.check_launch(initials))
     print(initials)
