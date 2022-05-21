@@ -13,6 +13,16 @@ M = 1000
 
 
 def f(u, g, m1, m2, l1, l2):
+    """
+    Right hand side function for differential expression
+    :param u: u value
+    :param g: gravitational constant
+    :param m1: mass of the 1st object
+    :param m2: mass of the 2nd object
+    :param l1: length of the 1st string
+    :param l2: length of the 2nd string
+    :return:
+    """
     f = np.zeros(10)
     f[0] = u[4]
     f[1] = u[5]
@@ -28,6 +38,13 @@ def f(u, g, m1, m2, l1, l2):
 
 
 def fu(u, m1, m2):
+    """
+    Jacobian of the f
+    :param u: u value
+    :param m1: mass of the 1st object
+    :param m2: mass of the 2nd object
+    :return:
+    """
     f_u = np.zeros((10, 10))
     # Задаются ненулевые компоненты матрицы Якоби
     f_u[0, 4] = 1.
@@ -58,6 +75,10 @@ def fu(u, m1, m2):
 
 
 def get_D_matrix():
+    """
+    D matrix of the differential system
+    :return:
+    """
     D = np.eye(10)
     D[8, 8] = 0
     D[9, 9] = 0
@@ -65,6 +86,19 @@ def get_D_matrix():
 
 
 def solve_ode(f, fu, M, t0, T, masses, lengths, angles, alpha=(1 + 1j)/2):
+    """
+    Function for solving algebro-differential system with the ROS algorithm
+    :param f: function f
+    :param fu: Jaccobian f
+    :param M: number of intervals
+    :param t0: initial time
+    :param T: end time
+    :param masses: masses of objects
+    :param lengths: lengths of the strings
+    :param angles: angles of the initial positions
+    :param alpha: coefficient for Rosenbrok method
+    :return: t, u
+    """
     tau = (T - t0) / M
     t = np.linspace(t0, T, M + 1)
     u = np.zeros((M + 1, 10))
@@ -94,6 +128,13 @@ def initialize_values(l1, l2, phi1, phi2, v1x=0., v1y=0., v2x=0., v2y=0., lambda
 
 
 def get_the_gif(t, u, M):
+    """
+    Get the gif from the solution
+    :param t: time moments
+    :param u: u value
+    :param M: number of intervals
+    :return:
+    """
     style.use('dark_background')
     fig = plt.figure()
     camera = Camera(fig)
@@ -102,7 +143,7 @@ def get_the_gif(t, u, M):
     ax.set_xlabel('x')
     ax.set_ylabel('y')
 
-    for m in range(0, M + 1, 5):
+    for m in range(0, M + 1, 10):
         ax.plot(0, 0, color="yellow", marker='o', markersize=5)
         ax.plot((-2, 2), (0, 0), '-', color="white")
         # Отрисовка подвеса 1
@@ -125,13 +166,20 @@ def get_the_gif(t, u, M):
 
 
 def solve_celluloid_problem(masses, lengths, angles):
+    """
+    Solves the ODE and returns the gif
+    :param masses: masses of objects
+    :param lengths: lengths of the strings
+    :param angles: angles of the initial positions
+    :return:
+    """
     t, u = solve_ode(f, fu, M, t0, T, masses, lengths, angles, alpha=(1 + 1j)/2)
     get_the_gif(t, u, M)
 
 
 if __name__ == '__main__':
     angles = [45, 0]
-    l1, l2 = 5., 2.
+    l1, l2 = 5., 1.
     m1, m2 = 1.0, 0.1
 
     masses, lengths = [m1, m2], [l1, l2]

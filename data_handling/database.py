@@ -10,6 +10,9 @@ db = SQLAlchemy()
 
 
 class Init_values(db.Model):
+    """
+    Class for interacting with DB
+    """
     __tablename__ = 'init_values'
 
     id = db.Column(db.Integer, primary_key=True)
@@ -32,9 +35,18 @@ class Init_values(db.Model):
 
     @classmethod
     def check_launch(cls, initials):
+        """
+        Check whether there is such object in DB
+        :param initials:
+        :return: list of objects
+        """
         return cls.query.filter_by(**initials).all()
 
     def save_to_db(self):
+        """
+        Save object to DB
+        :return:
+        """
         db.session.add(self)
         db.session.commit()
 
