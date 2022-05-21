@@ -1,1 +1,2 @@
-# comp-math-website
+Вебсайт, на котором вы можете поиграться с моделью двойного маятника
+https://comp-webapp.herokuapp.com/
